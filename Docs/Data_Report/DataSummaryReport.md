@@ -66,7 +66,7 @@ A summary of the length of tweets:
 | [161.0, 181.0) |      42 |
 | [181.0, inf)   |      15 |
 
-The top 20 words by count (excluding stopwords):
+The top 10 words by count (excluding stopwords):
 
 | word    |   count |
 |:--------|--------:|

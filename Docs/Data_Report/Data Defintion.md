@@ -35,7 +35,7 @@ The Twitter Climate Change Sentiment Dataset contains 43,943 tweets collected be
 ## Processed Data
 | Processed Dataset Name | Input Dataset(s)   | Data Processing Tools/Scripts | Link to Report |
 | ---:| ---: | ---: | ---: | 
-| processed.csv | [twitter_sentiment_data.csv](/Sample_Data/Raw/twitter_sentiment_data.csv) | [dataPrep.py](/Code/Data_Acquisition_and_Understanding/dataPrep.py) | [Dataset 1 Report](/Docs/Data_Report/DataSummaryReport.md)|
+| [processed.csv](/Sample_Data/Processed/processed.csv) | [twitter_sentiment_data.csv](/Sample_Data/Raw/twitter_sentiment_data.csv) | [dataPrep.py](/Code/Data_Acquisition_and_Understanding/dataPrep.py) | [Dataset 1 Report](/Docs/Data_Report/DataSummaryReport.md)|
 
 <!--
 | Processed Dataset 2 | [Dataset2](link/to/dataset2/report) |[script2.R](link/to/R/script/file/in/Code) | [Processed Dataset 2 Report](link/to/report2)|
