@@ -17,20 +17,37 @@ The dataset contains three features:
 
 ## Data quality summary
 
-All features are "clean". There are no missing values or any out of range values in the raw features.
+All raw features are "clean". There are no missing values or any out of range values in the raw features.
+
+| index   |    sentiment |         tweetid |
+|:--------|-------------:|----------------:|
+| count   | 43943        | 43943           |
+| mean    |     0.853924 |     8.36797e+17 |
+| std     |     0.853543 |     8.56851e+16 |
+| min     |    -1        |     5.92633e+17 |
+| 25%     |     0        |     7.97038e+17 |
+| 50%     |     1        |     8.4023e+17  |
+| 75%     |     1        |     9.02e+17    |
+| max     |     2        |     9.66702e+17 |
+
 
 
 ## Target variable
 
 The target variable variable is Sentiment. 
 
-| ID  | Sentiment | Sentiment Description                                             | N      | %      |
-|-----|-----------|-------------------------------------------------------------------|--------|--------|
-| -1  | Anti      | The tweet does not believe in man-made climate change             | 3,990  | 9.08%  |
-| 0   | Neutral   | The tweet neither supports nor refutes the belief of man-made climate change | 7,715  | 17.56% |
-| 1   | Pro       | The tweet supports the belief of man-made climate change          | 22,962 | 52.25% |
-| 2   | News      | The tweet links to factual news about climate change              | 9,276  | 21.11% |
-|     | **Total** |                                                                   | 43,943 | 100.00%|
+
+- -1: Anti - The tweet does not believe in man-made climate change                   
+- 0: Neutral - The tweet neither supports nor refutes the belief of man-made climate   
+- 1: Pro - The tweet supports the belief of man-made climate change                
+- 2: News - The tweet links to factual news about climate change                    
+
+|   sentiment |   count |   percentage |
+|------------:|--------:|-------------:|
+|          -1 |    3990 |         0.09 |
+|           0 |    7715 |         0.18 |
+|           1 |   22962 |         0.52 |
+|           2 |    9276 |         0.21 |
 
 
 ## Individual variables
@@ -46,6 +63,10 @@ Tweetid is the identifier which can also be converted to datetime. Additional da
 |   2016 |   14075 | 2016-01-01 | 2016-12-31 |
 |   2017 |   19223 | 2017-01-01 | 2017-12-31 |
 |   2018 |    7100 | 2018-01-01 | 2018-02-22 |
+
+A barplot of the count of tweets by date shows that many more tweets are available from the last months of 2016 to the beginning of 2018.
+
+![tweets_by_date](/Docs/Data_Report/images/tweets_by_date.png)
 
 ### 2. message
 
@@ -66,6 +87,12 @@ A summary of the length of tweets:
 | [161.0, 181.0) |      42 |
 | [181.0, inf)   |      15 |
 
+We observe a high concentration near 140 characters, which is expected for Twitter data which had this limit before 2017. ![tweets_length](/Docs/Data_Report/images/tweet_length.png)
+
+The number of words within a tweet displays a more symmetric distribution, concentrated around 9-10 words.
+
+![word_count](/Docs/Data_Report/images/word_count.png)
+
 The top 10 words by count (excluding stopwords):
 
 | word    |   count |
@@ -81,11 +108,57 @@ The top 10 words by count (excluding stopwords):
 | via     |    1557 |
 | new     |    1485 |
 
+A wordcloud showcases the relative frequencies of the words visually.
+
+![wordcloud](/Docs/Data_Report/images/wordcloud.png)
+
+Finally, TF-IDF scores were computed and averaged for each tweet. The distribution of these average scores:
+
+![tf_idf_avg](/Docs/Data_Report/images/tf_idf_avg.png)
+
 ## Variable ranking
 
-Analysis to be performed during modeling.
+For variable ranking, an initial analysis using information gain is used to understand the relationship between the target variable 'sentiment' and:
+- date
+- year
+- month
+- year_month
+- message_length
+- word_count
+- average_tfidf
+
+The top to features according to this analysis:
+
+| feature            |   information_gain |
+|:-------------------|-------------------:|
+| average_tfidf      |         1.18721    |
+| message_length     |         0.0747682  |
+| word_count         |         0.0261843  |
+| month              |         0.0131466  |
+| year               |         0.0103976  |
+| date_2017-03-06    |         0.00937518 |
+| year_month_2016-11 |         0.00877167 |
+| year_month_2017-03 |         0.00804246 |
+| date_2017-12-29    |         0.00791403 |
+| date_2017-05-22    |         0.00737934 |
+
 
 ## Relationship between explanatory variables and target variable
+
+A few relationships are analyzed considering some of the relevant features.
+
+Count of Sentiment vs. Average TF-IDF Bins (Percentage of Total Rows):
+| tfidf_bin            |   -1 |    0 |    1 |    2 |
+|:---------------------|-----:|-----:|-----:|-----:|
+| (1.52e-05, 2.09e-05] | 0.1  | 0.67 | 0.21 | 0.01 |
+| (2.09e-05, 2.66e-05] | 0.1  | 0.58 | 0.31 | 0.02 |
+| (2.66e-05, 3.22e-05] | 0.1  | 0.35 | 0.44 | 0.11 |
+| (3.22e-05, 3.79e-05] | 0.09 | 0.21 | 0.46 | 0.24 |
+| (3.79e-05, 4.36e-05] | 0.09 | 0.13 | 0.55 | 0.23 |
+| (4.36e-05, 4.93e-05] | 0.1  | 0.14 | 0.56 | 0.2  |
+| (4.93e-05, 5.5e-05]  | 0.12 | 0.21 | 0.53 | 0.14 |
+| (5.5e-05, 6.07e-05]  | 0.05 | 0.82 | 0.13 | 0    |
+| (6.07e-05, 6.64e-05] | 0    | 1    | 0    | 0    |
 
 Count of Sentiment vs. Year (Percentage of Total Rows):
 |   year |   -1 |    0 |    1 |    2 |
