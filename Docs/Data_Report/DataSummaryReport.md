@@ -112,7 +112,7 @@ A wordcloud showcases the relative frequencies of the words visually.
 
 ![wordcloud](/Docs/Data_Report/images/wordcloud.png)
 
-Finally, TF-IDF scores were computed and averaged for each tweet. The distribution of these average scores:
+Finally, [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) scores were computed and averaged for each tweet. The distribution of these average scores:
 
 ![tf_idf_avg](/Docs/Data_Report/images/tf_idf_avg.png)
 
@@ -127,7 +127,7 @@ For variable ranking, an initial analysis using information gain is used to unde
 - word_count
 - average_tfidf
 
-The top to features according to this analysis:
+The top ten features according to this analysis:
 
 | feature            |   information_gain |
 |:-------------------|-------------------:|
