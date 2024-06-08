@@ -1,12 +1,15 @@
 Column Index,Column Name,Type of Variable,"Values (range, levels, examples, etc)",Short Description,Joining Keys with others datasets?
 1,tweetid,Numeric,"Range: Large integers, Example: 1305373841110231040",Unique identifier for each tweet,No
 2,message,String,"Example: 'Climate change is real!'",Content of the tweet,No
-3,sentiment,Categorical,"Levels: 'pro', 'anti', 'neutral', 'news'",Sentiment classification of the tweet,No
+3,sentiment,Categorical,"Levels: -1 (anti), 0 (neutral), 1 (pro), 2 (news)",Sentiment classification of the tweet,No
 4,datetime,Datetime,"Example: '2020-09-13 04:22:44'",Timestamp of the tweet,No
 5,date,Date,"Example: '2020-09-13'",Date of the tweet,No
 6,year,Numeric,"Range: 2015-2018, Example: 2020",Year of the tweet,No
 7,month,Numeric,"Range: 1-12, Example: 9",Month of the tweet,No
 8,day,Numeric,"Range: 1-31, Example: 13",Day of the tweet,No
 9,year_month,String,"Example: '2020-09'",Year and month of the tweet,No
-10,dayofweek,String,"Levels: 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'",Day of the week of the tweet,No
+10,dayofweek,String,"Levels: 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'",Day of the week of the tweet,No
 11,message_length,Numeric,"Range: 1-280, Example: 22",Length of the tweet in characters,No
+12,tokens,List[String],"Example: ['climate', 'change', 'real']",List of tokens (words) in the tweet after preprocessing,No
+13,word_count,Numeric,"Range: 1-50, Example: 12",Number of words in the tweet after preprocessing,No
+14,average_tfidf,Numeric,"Range: 0-0.001, Example: 0.000043",Average TF-IDF score of the words in the tweet,No
