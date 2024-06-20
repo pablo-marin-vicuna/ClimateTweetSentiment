@@ -1,4 +1,4 @@
-# run: python Code/Data_Acquisition_and_Understanding/dataPrep.py
+# run from root: python Code/Data_Acquisition_and_Understanding/dataPrep.py
 
 import pandas as pd
 import nltk
@@ -52,6 +52,8 @@ df['tokens'] = df['message'].apply(preprocess)
 # Calculate word count for each message
 df['word_count'] = df['tokens'].apply(len)
 
+#### THIS SHOULD BE PART OF MODELING
+
 # Calculate TF-IDF scores
 tfidf_vectorizer = TfidfVectorizer(stop_words='english')
 tfidf_matrix = tfidf_vectorizer.fit_transform(df['message'])
@@ -62,7 +64,6 @@ tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=tfidf_feature_names)
 
 # Calculate average TF-IDF score for each message
 df['average_tfidf'] = tfidf_df.mean(axis=1)
-
 
 # Save the processed dataframe to a new CSV file
 df.to_csv(output_csv, index=False)
